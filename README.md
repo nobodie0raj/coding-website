@@ -33,7 +33,7 @@ To get started with the project, follow these steps:
    
 2. **Install dependencies:**
    ```bash
-  npm install
+   npm install
 
 3. **Set up environment variables:**
    Create a .env file in the root directory and add the necessary environment variables.
