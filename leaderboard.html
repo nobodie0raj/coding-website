@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="cclogo.png">
+    <style>
+  
+       @font-face {
+            font-family: 'Satoshi Regular';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Regular'), url('Satoshi-Regular.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Satoshi Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Italic'), url('Satoshi-Italic.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Satoshi Light';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Light'), url('Satoshi-Light.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Satoshi Light Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Light Italic'), url('Satoshi-LightItalic.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Satoshi Medium';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Medium'), url('Satoshi-Medium.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Satoshi Medium Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Medium Italic'), url('Satoshi-MediumItalic.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Satoshi Bold';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Bold'), url('Satoshi-Bold.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Satoshi Bold Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Bold Italic'), url('Satoshi-BoldItalic.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Satoshi Black';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Black'), url('Satoshi-Black.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Satoshi Black Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Black Italic'), url('Satoshi-BlackItalic.woff') format('woff');
+        }
+
+        body {
+            background-color: #0e141e;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            font-family: "Satoshi Regular", sans-serif;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #161f2f;
+            font-family: 'Satoshi Regular', sans-serif;
+        }
+
+        .topbar .left {
+            display: flex;
+            align-items: center;
+        }
+
+        .topbar img.logo {
+            width: 60px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .topbar .left a {
+            color: #ececec;
+            text-decoration: none;
+            margin-right: 40px; /* More spacious */
+            font-family: 'Satoshi Bold', sans-serif;
+            position: relative;
+        }
+
+        .topbar .right {
+            display: flex;
+            align-items: center;
+        }
+
+        .topbar .right .searchbar {
+            padding: 8px;
+            background-color: #39424e;
+            border: 0.1px solid #ececec; /* White boundaries */
+            border-radius: 5px;
+            color: #fff;
+            width: 200px;
+            margin-right: 20px; 
+            font-family: 'Satoshi Light', sans-serif;
+        }
+
+        .topbar .right .searchbar::placeholder {
+            color: #fff; /* Placeholder text color */
+            font-family: 'Satoshi Light', sans-serif;
+        }
+
+        .topbar .right a {
+            margin-right: 10px;
+            margin-left: 20px;
+        }
+
+        .topbar .right a img {
+            width: 24px;
+            height: auto;
+            display: block;
+            filter: hue-rotate(0deg) saturate(0%) brightness(100%);
+        }
+
+        .leaderboard {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #1d2432;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .leaderboard h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-family: 'Satoshi Medium', sans-serif;
+            font-size: 2em;
+          
+            padding-bottom: 10px;
+        }
+
+        .leaderboard-entry {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #2b3445;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            font-family: 'Satoshi Regular', sans-serif;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .leaderboard-entry:hover {
+            background-color: #39424e;
+            transform: scale(1.02);
+        }
+
+        .rank {
+            flex: 1;
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        .player {
+            flex: 3;
+            text-align: center;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .player img.avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            margin-left: 1px;
+        }
+
+        .tier {
+            flex: 1;
+            text-align: center;
+        }
+
+        .score {
+            flex: 2;
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        .tier img {
+            width: 50px; /* Adjust size as needed */
+        }
+
+     /*   .progress-bar {
+            width: 100%;
+            background-color: #39424e;
+            border-radius: 5px;
+            margin-top: 5px;
+            overflow: hidden;
+            transition: background-color 0.3s ease;
+        }
+
+        .progress-bar-fill {
+            height: 10px;
+            background-color: #4CAF50;
+            border-radius: 5px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-bar:hover {
+            background-color: #4a5465;
+        } 
+            */
+
+        .section-divider {
+            height: 2px;
+            background-color: #4CAF50;
+            margin: 40px 0;
+        }
+
+        .footer {
+            font-size: 8px;
+            margin-top: auto;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-family: "Satoshi Light", sans-serif;
+        }
+
+        .footer img.logo {
+            width: 10px;
+            height: auto;
+            margin-right: 5px;
+        }
+
+        .icon {
+            font-size: 20px;
+            margin: 0 10px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        a:visited {
+            color: #e7eeef;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        a:link {
+            color: #e7eeef;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        .current-page {
+            border-bottom: 3.5px solid #20d761; /* Green bar at the bottom */
+            
+        }
+
+        .notification-icon {
+    position: relative;
+    cursor: pointer;
+}
+
+.notification-icon img {
+    width: 24px;
+    height: auto;
+    filter: hue-rotate(0deg) saturate(0%) brightness(100%);
+}
+.notification-icon {
+    position: relative;
+    cursor: pointer;
+    display: flex; /* Align items inside flexbox */
+    align-items: center; /* Vertically center the icon */
+    margin: 0 15px; /* Same margin as other icons for consistent spacing */
+}
+.notification-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 5px;
+    font-size: 12px;
+    font-family: 'Satoshi Bold', sans-serif;
+}
+
+.notification-dropdown {
+    position: absolute;
+    right: 20px;
+    top: 60px;
+    width: 300px;
+    background-color: #161f2f;
+    border: 1px solid #39424e;
+    border-radius: 5px;
+    display: none;
+    flex-direction: column;
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #1d2432;
+    font-family: 'Satoshi Bold', sans-serif;
+    border-bottom: 1px solid #39424e;
+}
+
+.archive-all {
+    cursor: pointer;
+    color: #4CAF50;
+}
+
+.notification-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.notification-item {
+    padding: 10px;
+    border-bottom: 1px solid #39424e;
+    font-family: 'Satoshi Light', sans-serif;
+}
+
+.notification-item:hover {
+    background-color: #39424e;
+}
+
+.show-all {
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    color: #4CAF50;
+}
+
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <div class="left">
+            <img src="cclogo.png" alt="Logo" class="logo">
+            <a href="home.html">Home</a>
+            <a href="challenges.html">Challenges</a> 
+            <a href="leaderboard.html"class="current-page">Leaderboard</a>
+            <a href="quizindex.html">Quiz</a> 
+        </div>
+        <div class="right">
+            <input type="text" class="searchbar" placeholder="Search...">
+            <a href="#"><img src="icons/notification.png" alt="Notifications"></a>
+            <a href="user.html"><img src="icons/user.png" alt="Profile"></a>
+            <a href="#"><img src="icons/settings.png" alt="Settings"></a>
+        </div>
+    </div>
+
+    <div class="leaderboard">
+        <h2>Leaderboard</h2>
+        <div class="leaderboard-entry">
+            <div class="rank">1</div>
+            <div class="player"><img src="icons/user.png" alt="John Doe" class="avatar">John Doe</div>
+            <div class="tier"><img src="icons/gold.png" alt="Gold Tier"></div>
+            <div class="score">1500</div>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-bar-fill" style="width: 75%;"></div>
+        </div>
+        <div class="leaderboard-entry">
+            <div class="rank">2</div>
+            <div class="player"><img src="icons/user.png" alt="Jane Doe" class="avatar">Jane Doe</div>
+            <div class="tier"><img src="icons/silver.png" alt="Silver Tier"></div>
+            <div class="score">1400</div>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-bar-fill" style="width: 50%;"></div>
+        </div>
+        <div class="leaderboard-entry">
+            <div class="rank">3</div>
+            <div class="player"><img src="icons/user.png" alt="Alice Johnson" class="avatar">Alice Johnson</div>
+            <div class="tier"><img src="icons/bronze.png" alt="Bronze Tier"></div>
+            <div class="score">1300</div>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-bar-fill" style="width: 25%;"></div>
+        </div>
+        <!-- Add more leaderboard entries as needed -->
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Creator's Coding Community</p>
+   
+    </div>
+   
+</body> 
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+            // Function to generate a random name
+            function getRandomName() {
+               const names = [
+                    'Muskaan','Yuvraj','Achyuta', 'Alapati', 'Alok', 'Anamol', 'Anish', 'Anjaiah', 'Anjaneyulu', 'Appa Rao', 'Appayya', 
+                    'Alindam', 'Aryaman', 'Aseem', 'Ashish', 'Avneet', 'B', 'Babu', 'Balakrishna', 'Balasubramaniam', 
+                    'Bhagwati', 'Bimal', 'Binod', 'Biraj', 'Brijesh', 'C', 'Chakravarthy', 'Chandramouli', 'Chetan', 'D', 
+                    'Deepan', 'Deo', 'Dhulipalla', 'Dipesh', 'Divakar', 'Divya', 'Dorabjee', 'G', 'Ghantasala', 'Girraj', 
+                    'H', 'Hanumantha Rao', 'Harbhajan', 'Harikrishna', 'Harit', 'Harmanpreet', 'Harsh Vardhan', 'I', 
+                    'Ishwar', 'J', 'Jagan', 'Jagmeet', 'Jaisingrao', 'Jayendra', 'Jigar', 'K', 'Keerti', 'Keki', 'Keshavadasa', 
+                    'Krishnamoorthy', 'Krishnamurti', 'Krishnayya', 'Kuladhar', 'Kunchan', 'Kutumba Rao', 'L', 'Lakshmi', 
+                    'Lakshmikantam', 'Lal', 'Latha', 'Laxmikant', 'M', 'Mallikarjuna Rao', 'Manasvi', 'Mandar', 'Mandeep', 
+                    'Manikandan', 'Manpreet', 'Manu', 'Milkha', 'Mriganka', 'Mrinal', 'N', 'Nachiketa', 'Nakusha', 'Nalinaksha', 
+                    'Nanubhai', 'Narendran', 'Naresh', 'Nathuram', 'Ninan', 'Nishant', 'P', 'Pardeep', 'Prabhakar', 'Pranay', 
+                    'Prasad', 'Prasanta', 'Pratibha', 'Priyadarshana', 'R', 'Raghava', 'Raghavan', 'Rama', 'Rama Devi', 
+                    'Ramachandra Rao', 'Ramasamy', 'Ranganathan', 'Ranveer', 'Ratilal', 'Ratnakar', 'Ravikumar', 'Ravindranath', 
+                    'Romesh', 'S', 'Saahil', 'Sambasiva Rao', 'Santosh', 'Seema', 'Shashi', 'Shaurya', 'Shirish', 'Shyam', 
+                    'Sikkil', 'Sitaram', 'Siva Rao', 'Somayajulu', 'Sonal', 'Sreedharan', 'Srinivasa', 'Sukhdev', 'Sukhjit', 
+                    'Surender', 'Suryanarayana', 'Swathi', 'T', 'Tanaji', 'Tanvi', 'Tapas', 'Trilok', 'Trupti', 'U', 'Unnikrishnan', 
+                    'V', 'Vaibhav', 'Vallabha', 'Vamsi', 'Varghese', 'Vemuri', 'Venkata', 'Venkatesh', 'Venkateswaran', 'Vidyasagar', 
+                    'Vijay', 'Vikram', 'Vinu', 'Vishal', 'Vishesh', 'Vishwajeet', 'Vishwanath', 'Viswanathan', 'Y', 'Yamini', 'Z', 
+                    'Zorawar'
+                ];
+                return names[Math.floor(Math.random() * names.length)];
+            }
+
+            // Function to generate random ranked users
+            function generateRankedUsers(count) {
+                const users = [];
+                let currentScore = 6046; // Starting score for rank 1
+                for (let i = 1; i <= count; i++) {
+                    const user = {
+                        rank: i,
+                        name: getRandomName(),
+                        avatar: 'user.png', // Default avatar image
+                        tier: ['gold', 'silver', 'bronze'][Math.floor(Math.random() * 3)], // Random tier
+                        score: currentScore, // Set the current score
+                        progress: Math.floor(Math.random() * 100) // Random progress percentage
+                    };
+                    // Decrease the score randomly between 1 and 3 for the next user
+                    currentScore -= Math.floor(Math.random() * 3) + 1;
+                    users.push(user);
+                }
+                return users; // No need to sort since they are already in ascending order
+            }
+
+            // Generate 2000+ ranked users
+            const rankedUsers = generateRankedUsers(2000);
+
+            // Function to update the leaderboard with generated data
+            function updateLeaderboard(data) {
+                const leaderboard = document.querySelector('.leaderboard');
+                leaderboard.innerHTML = '<h2>Leaderboard</h2>';
+                data.forEach(entry => {
+                    const entryElement = document.createElement('div');
+                    entryElement.classList.add('leaderboard-entry');
+                    entryElement.innerHTML = `
+                        <div class="rank">${entry.rank}</div>
+                        <div class="player"><img src="icons/${entry.avatar}" alt="${entry.name}" class="avatar">${entry.name}</div>
+                        <div class="tier"><img src="icons/${entry.tier}.png" alt="${entry.tier} Tier"></div>
+                        <div class="score">${entry.score}</div>
+                    `;
+                    leaderboard.appendChild(entryElement);
+
+                    const progressBar = document.createElement('div');
+                    progressBar.classList.add('progress-bar');
+                    progressBar.innerHTML = `
+                        <div class="progress-bar-fill" style="width: ${entry.progress}%"></div>
+                    `;
+                    leaderboard.appendChild(progressBar);
+                });
+            }
+
+            // Initial update with generated data
+            updateLeaderboard(rankedUsers);
+        });
+</script>
+</html>

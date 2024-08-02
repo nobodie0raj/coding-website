@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="cclogo.png">
+    <title>Creator's Coding Community</title>
+    
+    <style>
+        @font-face {
+            font-family: 'Satoshi Regular';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Regular'), url('Satoshi-Regular.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Satoshi Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Italic'), url('Satoshi-Italic.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Satoshi Light';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Light'), url('Satoshi-Light.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Satoshi Light Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Light Italic'), url('Satoshi-LightItalic.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Satoshi Medium';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Medium'), url('Satoshi-Medium.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Satoshi Medium Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Medium Italic'), url('Satoshi-MediumItalic.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Satoshi Bold';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Bold'), url('Satoshi-Bold.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Satoshi Bold Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Bold Italic'), url('Satoshi-BoldItalic.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Satoshi Black';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Black'), url('Satoshi-Black.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Satoshi Black Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Black Italic'), url('Satoshi-BlackItalic.woff') format('woff');
+        }
+        
+        body {
+            background-color: #0e141e;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: "Satoshi Regular", sans-serif;
+        }
+
+        .main-content {
+            display: none;
+        }
+
+         .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #161f2f;
+            font-family: 'Satoshi Regular', sans-serif;
+        }
+
+        .topbar .left {
+            display: flex;
+            align-items: center;
+        }
+
+        .topbar img.logo {
+            width: 60px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .topbar .left a {
+            color: #ececec;
+            text-decoration: none;
+            margin-right: 40px; /* More spacious */
+            font-family: 'Satoshi Bold', sans-serif;
+            position: relative;
+        }
+
+        .topbar .right {
+    display: flex;
+    align-items: center;
+    
+}
+
+        .topbar .right .searchbar {
+            padding: 8px;
+            background-color: #39424e;
+            border: 0.1px solid #ececec; /* White boundaries */
+            border-radius: 5px;
+            color: #fff;
+            width: 200px;
+            margin-right: 20px;
+            font-family: 'Satoshi Light', sans-serif;
+            margin-left: 15px; /* Added margin to the left for more space */
+        
+        }
+
+        .topbar .right .searchbar::placeholder {
+            color: #fff; /* Placeholder text color */
+            font-family: 'Satoshi Light', sans-serif;
+        }
+
+        .topbar .right a {
+            margin-right: 10px;
+            margin-left: 20px;
+        }
+
+        .topbar .right a img {
+            width: 24px;
+            height: auto;
+            display: block;
+            filter: hue-rotate(0deg) saturate(0%) brightness(100%);
+        }
+
+
+
+        .navbar {
+            background-color: #1f202a;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .progress-container {
+            width: 50%;
+            background-color: #1f202a;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 10px;
+            background-color: #4CAF50;
+            width: 75%;
+        }
+
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .section {
+            width: 100%;
+            max-width: 1200px;
+            margin-bottom: 20px;
+        }
+
+       
+
+        .challenge-container .btn {
+    background-color: #20d761; /* Green background */
+    color: #000; /* Black text */
+    padding: 8px 16px;
+    border: 2px solid #1d2432;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 14px;
+    text-transform: capitalize;
+    transition: background-color 0.3s ease; /* Added transition property */
+    font-family: 'Satoshi Light', sans-serif; /* Ensure consistent font family */
+    
+}
+
+.challenge-container .btn:hover {
+    background-color: #baf3ce; /* Light green on hover */
+}
+
+        .challenge-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #1d2432;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            transition: background-color 0.2s ease;
+            width: 100%;
+            max-width: 1200px;
+            font-family: "Satoshi Regular", sans-serif;
+        }
+
+        .challenge-container:hover {
+            background-color: #35363f;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .challenge-info h3 {
+            margin: 0;
+            font-size: 18px;
+            margin-right: 10px;
+            font-family: 'Satoshi Bold', sans-serif;
+        }
+
+        .footer {
+            font-size: 8px;
+            margin-top: auto;
+            margin-bottom: 13px;
+            text-align: center;
+            font-family: "Satoshi Light", sans-serif;
+        }
+
+        .footer img.logo {
+            width: 10px;
+            height: auto;
+            margin-right: 5px;
+        }
+
+        .icon {
+            font-size: 20px;
+            margin: 0 10px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        a:visited {
+            color: #e7eeef;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        a:link {
+            color: #e7eeef;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        .current-page {
+    
+            border-bottom: 3.5px solid #20d761; /* Green bar at the bottom */
+        }
+
+        .notification-icon {
+    position: relative;
+    cursor: pointer;
+}
+
+.notification-icon img {
+    width: 24px;
+    height: auto;
+    filter: hue-rotate(0deg) saturate(0%) brightness(100%);
+}
+.notification-icon {
+    position: relative;
+    cursor: pointer;
+    display: flex; /* Align items inside flexbox */
+    align-items: center; /* Vertically center the icon */
+    margin: 0 15px; /* Same margin as other icons for consistent spacing */
+}
+.notification-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 5px;
+    font-size: 12px;
+    font-family: 'Satoshi Bold', sans-serif;
+}
+
+.notification-dropdown {
+    position: absolute;
+    right: 20px;
+    top: 60px;
+    width: 300px;
+    background-color: #161f2f;
+    border: 1px solid #39424e;
+    border-radius: 5px;
+    display: none;
+    flex-direction: column;
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #1d2432;
+    font-family: 'Satoshi Bold', sans-serif;
+    border-bottom: 1px solid #39424e;
+}
+
+.archive-all {
+    cursor: pointer;
+    color: #4CAF50;
+}
+
+.notification-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.notification-item {
+    padding: 10px;
+    border-bottom: 1px solid #39424e;
+    font-family: 'Satoshi Light', sans-serif;
+}
+
+.notification-item:hover {
+    background-color: #39424e;
+}
+
+.show-all {
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    color: #4CAF50;
+}
+.topbar .right a img {
+            width: 24px;
+            height: auto;
+            display: block;
+            filter: hue-rotate(0deg) saturate(0%) brightness(100%);
+        }
+
+
+    </style> 
+
+</head>
+<body>
+  <!--  <div class="loading-container">
+        <div class="loading-animation">
+            <div class="spinner"></div>
+            <p>Loading your success 🚀</p>
+        </div>
+    </div> -->
+
+    <div class="topbar">
+        <div class="left">
+            <img src="cclogo.png" alt="Logo" class="logo">
+            <a href="home.html">Home</a>
+            <a href="challenges.html"class="current-page">Challenges</a> 
+            <a href="leaderboard.html">Leaderboard</a>
+            <a href="quizindex.html">Quiz</a>
+        </div>
+        <div class="right">
+            <input type="text" class="searchbar" placeholder="Search...">
+            <div class="notification-icon" onclick="toggleNotifications()">
+                <img src="icons/notification.png" alt="Notifications">
+                <div class="notification-count">7</div>
+            </div>
+            <a href="user.html"><img src="icons/user.png" alt="Profile"></a>
+            <a href="#"><img src="icons/settings.png" alt="Settings"></a>
+        </div>
+    </div>
+    <div class="notification-dropdown" id="notificationDropdown">
+        <div class="notification-header">
+            Notifications
+            <span class="archive-all">Archive All</span>
+        </div>
+        <div class="notification-list">
+            <div class="notification-item">Array of Sunshine : Day 7 of 30 Days of Code.</div>
+            <div class="notification-item">Operators, Strings, and Loops, Oh My! Day 6 of 30 Days of Code.</div>
+            <div class="notification-item">Are you in the Loop? Day 5 of 30 Days of Code.</div>
+            <div class="notification-item">Classes vs Instance. Day 4 of 30 Days of Code.</div>
+            <div class="notification-item">Conquer Conditionals. Day 3 of 30 Days of Code.</div>
+            <div class="notification-item">Become an Operator Overlord. Day 2 of 30 Days of Code.</div>
+            <div class="notification-item">Double Down on Data Types. Day 1 of 30 Days of Code.</div>
+            <!-- Add more notifications as needed -->
+        </div>
+        <div class="show-all">Show All</div>
+    </div>
+
+ 
+   <!--- <div class="navbar">
+        <div>Challenges: Day #</div>
+        <div class="progress-container">
+            <div class="progress"></div>
+        </div>
+    </div> -->
+
+
+    <div class="container main-content">
+        <div class="section">
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 40: Recursive Functions & Rotate array by K elements</h3>
+                </div>
+                <a href="challenges40.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 39: Recursion Intro & Left Rotate the Array by One</h3>
+                </div>
+                <a href="challenges39.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 38: Subset Sum & Remove Duplicates from sorted array</h3>
+                </div>
+                <a href="challenges38.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 37: 0/1 Knapsack Problem & Check if the array is sorted</h3>
+                </div>
+                <a href="challenges37.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 36: Brute Force vs Dynamic Prgmg & 2nd Largest Element in an Array W/o sorting</h3>
+                </div>
+                <a href="challenges36.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 35: How to Solve Dynamic Prgmng & Largest Element in an Array</h3>
+                </div>
+                <a href="challenges35.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 34: Dynamic Programming Intro & Quick Sort</h3>
+                </div>
+                <a href="challenges34.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 33: Topological Sorting & Recursive Insertion Sort</h3>
+                </div>
+                <a href="challenges33.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 32: Kruskal’s ALgo (MST) & Recursive Bubble Sort</h3>
+                </div>
+                <a href="challenges32.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 31: Minimum Spanning tree & Merge sort</h3>
+                </div>
+                <a href="challenges31.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 30: Bellman Ford & Insertion Sort Algo</h3>
+                </div>
+                <a href="challenges30.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 29: Dijkstra's ALgo & Bubble Sort Algo</h3>
+                </div>
+                <a href="challenges29.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 28: DFS Algo & Selection Sort Algo</h3>
+                </div>
+                <a href="challenges28.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 27: Graph Algorithms & Hashing Theory</h3>
+                </div>
+                <a href="challenges27.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 26: Tree Traversal & Hashing Theory</h3>
+                </div>
+                <a href="challenges26.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 25: Merge Sort, Quick & Reverse an Array</h3>
+                </div>
+                <a href="challenges25.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 24: Insertion Sort & Sum of N terms</h3>
+                </div>
+                <a href="challenges24.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 23: Selection Sort & Print N times</h3>
+                </div>
+                <a href="challenges23.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 22: Bubble sort & Minimal Jumps</h3>
+                </div>
+                <a href="challenges22.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 21: Intro to Sorting & Print all divisors</h3>
+                </div>
+                <a href="challenges21.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 20: Linear Search vs Binary Search & Armstrong Number</h3>
+                </div>
+                <a href="challenges20.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 19: Binary Search & GCD OF 2 Num</h3>
+                </div>
+                <a href="challenges19.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 18: Linear Search & Reverse a Number</h3>
+                </div>
+                <a href="challenges18.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 17: Searching & Approaches</h3>
+                </div>
+                <a href="challenges17.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 16: Queue Implementation & Binary Number Triangle Pattern</h3>
+                </div>
+                <a href="challenges16.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 15: Types of Linked List & Half Diamond Star Pattern</h3>
+                </div>
+                <a href="challenges15.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 14: Implementation of Stack & 8 Inverse Pyramid</h3>
+                </div>
+                <a href="challenges14.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 13: Linked list Vs Array & 7 Star Pyramid</h3>
+                </div>
+                <a href="challenges13.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 12: Palindrome & Pattern Problems</h3>
+                </div>
+                <a href="challenges12.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 11: String, Subsequence & Substring & Patterns</h3>
+                </div>
+                <a href="challenges11.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 10: Types of Arrays & Pattern Problems</h3>
+                </div>
+                <a href="challenges10.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 9: Binary Search Tree & Rectangular Star Pattern</h3>
+                </div>
+                <a href="challenges9.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 8: Binary Tree & Complexity</h3>
+                </div>
+                <a href="challenges8.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 7: Tree & Functions</h3>
+                </div>
+                <a href="challenges7.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 6: Queue & loops</h3>
+                </div>
+                <a href="challenges6.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 5: Stack & loops</h3>
+                </div>
+                <a href="challenges5.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 4: String & Switch</h3>
+                </div>
+                <a href="challenges4.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 3: Matrix & If else</h3>
+                </div>
+                <a href="challenges3.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 2: Arrays & Linked list</h3>
+                </div>
+                <a href="challenges2.html" class="btn">Solve Challenge</a>
+            </div>
+            <div class="challenge-container">
+                <div class="challenge-info">
+                    <h3>Day 1: Learn the basics</h3>
+                </div>
+                <a href="challenges1.html" class="btn">Solve Challenge</a>
+            </div>
+            
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <img src="cclogo.png" alt="Logo" class="logo">
+        &copy; 2024 Creator's Coding Community. All rights reserved.
+    </footer>
+<script>
+
+document.getElementById('searchForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting in the traditional way
+
+    let query = document.getElementById('searchbar').value; // Get the value of the search bar
+
+    if (query) {
+        // You can customize this part to fit your needs
+        // For now, we'll just log the query to the console
+        console.log('Search query:', query);
+
+        // You can redirect to a search results page or perform AJAX search here
+        // For example:
+        // window.location.href = search_results.html?query=${encodeURIComponent(query)};
+
+        // Or you can make an AJAX request to your server
+    } else {
+        alert('Please enter a search query.');
+    }
+});
+
+
+    
+    function toggleNotifications() {
+        const dropdown = document.getElementById('notificationDropdown');
+        if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+            dropdown.style.display = 'flex';
+        } else {
+            dropdown.style.display = 'none';
+        }
+    }
+    
+    // Close the dropdown when clicking outside
+    window.onclick = function(event) {
+        if (!event.target.matches('.notification-icon') && !event.target.matches('.notification-icon *')) {
+            const dropdowns = document.getElementsByClassName("notification-dropdown");
+            for (let i = 0; i < dropdowns.length; i++) {
+                let openDropdown = dropdowns[i];
+                if (openDropdown.style.display === 'flex') {
+                    openDropdown.style.display = 'none';
+                }
+            }
+        }
+    }
+    
+    </script>
+   
+</body>

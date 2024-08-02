@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Page - Creator's Coding Community</title>
+    <style>
+        @font-face {
+            font-family: 'Satoshi Regular';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Regular'), url('Satoshi-Regular.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Satoshi Bold';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Bold'), url('Satoshi-Bold.woff') format('woff');
+        }
+
+        body {
+            background-color: #0e141e;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            font-family: "Satoshi Regular", sans-serif;
+        }
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #161f2f;
+            font-family: 'Satoshi Regular', sans-serif;
+        }
+
+        .topbar .left {
+            display: flex;
+            align-items: center;
+        }
+
+        .topbar img.logo {
+            width: 60px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .topbar .left a {
+            color: #ececec;
+            text-decoration: none;
+            margin-right: 40px; /* More spacious */
+            font-family: 'Satoshi Bold', sans-serif;
+            position: relative;
+        }
+
+        .topbar .right {
+            display: flex;
+            align-items: center;
+        }
+
+        .topbar .right .searchbar {
+            padding: 8px;
+            background-color: #39424e;
+            border: 0.1px solid #ececec; /* White boundaries */
+            border-radius: 5px;
+            color: #fff;
+            width: 200px;
+            margin-right: 20px; 
+            font-family: 'Satoshi Light', sans-serif;
+        }
+
+        .topbar .right .searchbar::placeholder {
+            color: #fff; /* Placeholder text color */
+            font-family: 'Satoshi Light', sans-serif;
+        }
+
+        .topbar .right a {
+            margin-right: 10px;
+            margin-left: 20px;
+        }
+
+        .topbar .right a img {
+            width: 24px;
+            height: auto;
+            display: block;
+            filter: hue-rotate(0deg) saturate(0%) brightness(100%);
+        }
+
+
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-family: 'Satoshi Bold', sans-serif;
+        }
+
+        .quiz-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background-color: #1d2432;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px;
+            text-align: center;
+            width: 250px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-family: 'Satoshi Regular', sans-serif;
+            transition: background-color 0.2s ease;
+        }
+
+        .card:hover {
+          /*  transform: scale(1.05); */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            background-color: #35363f;
+           
+        }
+
+        .card h2 {
+            font-family: 'Satoshi Bold', sans-serif;
+            margin-bottom: 10px;
+        }
+
+        .card a {
+            display: inline-block;
+            background-color: #20d761;
+            color: #000;
+            margin-top: 10px;
+            border: 2px solid #1d2432;
+            padding: 10px 50px;
+            border-radius: 10px;
+            font-size: 16px;
+            text-decoration: none;
+            font-family: 'Satoshi Light', sans-serif; /* Ensure consistent font family */
+            transition: background-color 0.3s;
+            text-transform: capitalize;
+        }
+       
+
+        .card a:hover {
+            background-color: #baf3ce; /* Light green on hover */
+        }
+
+        .footer {
+            font-size: 8px;
+            margin-top: 50px;
+            margin-bottom: 13px;
+            text-align: center;
+            font-family: "Satoshi Light", sans-serif;
+        }
+
+        .footer img.logo {
+            width: 10px;
+            height: auto;
+            margin-right: 5px;
+        }
+
+        .current-page {
+            border-bottom: 3.5px solid #4CAF50;
+        }
+
+        
+        .notification-icon {
+    position: relative;
+    cursor: pointer;
+}
+
+.notification-icon img {
+    width: 24px;
+    height: auto;
+    filter: hue-rotate(0deg) saturate(0%) brightness(100%);
+}
+.notification-icon {
+    position: relative;
+    cursor: pointer;
+    display: flex; /* Align items inside flexbox */
+    align-items: center; /* Vertically center the icon */
+    margin: 0 15px; /* Same margin as other icons for consistent spacing */
+}
+.notification-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 5px;
+    font-size: 12px;
+    font-family: 'Satoshi Bold', sans-serif;
+}
+
+.notification-dropdown {
+    position: absolute;
+    right: 20px;
+    top: 60px;
+    width: 300px;
+    background-color: #161f2f;
+    border: 1px solid #39424e;
+    border-radius: 5px;
+    display: none;
+    flex-direction: column;
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #1d2432;
+    font-family: 'Satoshi Bold', sans-serif;
+    border-bottom: 1px solid #39424e;
+}
+
+.archive-all {
+    cursor: pointer;
+    color: #4CAF50;
+}
+
+.notification-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.notification-item {
+    padding: 10px;
+    border-bottom: 1px solid #39424e;
+    font-family: 'Satoshi Light', sans-serif;
+}
+
+.notification-item:hover {
+    background-color: #39424e;
+}
+
+.show-all {
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    color: #4CAF50;
+}
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <div class="left">
+            <img src="cclogo.png" alt="Logo" class="logo">
+            <a href="home.html">Home</a>
+            <a href="challenges.html">Challenges</a> 
+            <a href="leaderboard.html">Leaderboard</a>
+            <a href="quizindex.html" class="current-page">Quiz</a> 
+        </div>  
+        <div class="right">
+            <input type="text" class="searchbar" placeholder="Search...">
+            <div class="notification-icon" onclick="toggleNotifications()">
+                <img src="icons/notification.png" alt="Notifications">
+                <div class="notification-count">7</div>
+            </div>
+            <a href="#"><img src="icons/user.png" alt="Profile"></a>
+            <a href="#"><img src="icons/settings.png" alt="Settings"></a>
+        </div>
+    </div>
+    <div class="notification-dropdown" id="notificationDropdown">
+        <div class="notification-header">
+            Notifications
+            <span class="archive-all">Archive All</span>
+        </div>
+        <div class="notification-list">
+            <div class="notification-item">Array of Sunshine :) Day 7 of 30 Days of Code.</div>
+            <div class="notification-item">Operators, Strings, and Loops, Oh My! Day 6 of 30 Days of Code.</div>
+            <div class="notification-item">Are you in the Loop? Day 5 of 30 Days of Code.</div>
+            <div class="notification-item">Classes vs Instance. Day 4 of 30 Days of Code.</div>
+            <div class="notification-item">Conquer Conditionals. Day 3 of 30 Days of Code.</div>
+            <div class="notification-item">Become an Operator Overlord. Day 2 of 30 Days of Code.</div>
+            <div class="notification-item">Double Down on Data Types. Day 1 of 30 Days of Code.</div>
+        </div>
+        <div class="show-all">Show All</div>
+    </div>
+
+    <div class="container">
+        <h1>Quiz Page</h1>
+        <div class="quiz-group">
+            <div class="card">
+                <h2>DSA CHALLENGE QUIZ 1</h2>
+                <a href="Quiz E-Commerce/quiz 1.html">Get Certified</a>
+            </div>
+            <div class="card">
+                <h2>DSA CHALLENGE QUIZ 2</h2>
+                <a href="Quiz E-Commerce/quiz 2.html">Get Certified</a>
+            </div>
+            <div class="card">
+                <h2>DSA CHALLENGE QUIZ 3</h2>
+                <a href="Quiz E-Commerce/quiz 3.html">Get Certified</a>
+            </div>
+            <div class="card">
+                <h2>DSA CHALLENGE QUIZ 4</h2>
+                <a href="Quiz E-Commerce/quiz 4.html">Get Certified</a>
+            </div>
+            <div class="card">
+                <h2>DSA CHALLENGE QUIZ 5</h2>
+                <a href="Quiz E-Commerce/quiz 5.html">Get Certified</a>
+            </div>
+            <div class="card">
+                <h2>DSA CHALLENGE QUIZ 6</h2>
+                <a href="Quiz E-Commerce/quiz 6.html">Get Certified</a>
+            </div>
+        </div>
+    </div> <br> <br>
+    <div class="footer">
+        <img src="cclogo.png" alt="Logo" class="logo">
+        Creator's Coding Community @ 2023
+    </div>
+    <script>
+        function toggleNotifications() {
+            var dropdown = document.getElementById('notificationDropdown');
+            if (dropdown.style.display === 'block') {
+                dropdown.style.display = 'none';
+            } else {
+                dropdown.style.display = 'block';
+            }
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.notification-icon, .notification-icon *')) {
+                var dropdown = document.getElementById('notificationDropdown');
+                if (dropdown.style.display === 'block') {
+                    dropdown.style.display = 'none';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

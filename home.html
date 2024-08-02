@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <link rel="icon" type="image/png" sizes="32x32" href="cclogo.png">
+    <title>Creator's Community</title>
+    
+    <style>
+         @font-face {
+            font-family: 'Satoshi Regular';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Regular'), url('Satoshi-Regular.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Satoshi Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Italic'), url('Satoshi-Italic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Satoshi Light';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Light'), url('Satoshi-Light.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Satoshi Light Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Light Italic'), url('Satoshi-LightItalic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Satoshi Medium';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Medium'), url('Satoshi-Medium.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Satoshi Medium Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Medium Italic'), url('Satoshi-MediumItalic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Satoshi Bold';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Bold'), url('Satoshi-Bold.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Satoshi Bold Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Bold Italic'), url('Satoshi-BoldItalic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Satoshi Black';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Black'), url('Satoshi-Black.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Satoshi Black Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Black Italic'), url('Satoshi-BlackItalic.woff') format('woff');
+        }
+
+        .spotify-widget {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #0e141e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            margin-top: 20px;
+        }
+
+        .spotify-widget iframe {
+            border-radius: 10px;
+        }
+        
+        body {
+            background-color: #0e141e;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            font-family: "Satoshi Regular", sans-serif;
+        }
+
+        .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #161f2f;
+    font-family: 'Satoshi Regular', sans-serif;
+}
+
+.topbar .left {
+    display: flex;
+    align-items: center;
+}
+
+.topbar img.logo {
+    width: 60px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.topbar .left a {
+    color: #ececec;
+    text-decoration: none;
+    margin-right: 40px;
+    font-family: 'Satoshi Bold', sans-serif;
+    position: relative;
+}
+
+.topbar .right {
+    display: flex;
+    align-items: center;
+}
+
+.topbar .right .searchbar {
+    padding: 8px;
+    background-color: #39424e;
+    border: 0.1px solid #ececec;
+    border-radius: 5px;
+    color: #fff;
+    width: 200px;
+    margin-right: 20px;
+    font-family: 'Satoshi Light', sans-serif;
+    margin-left: 15px;
+}
+
+.topbar .right .searchbar::placeholder {
+    color: #fff;
+    font-family: 'Satoshi Light', sans-serif;
+}
+
+.topbar .right a {
+    margin-right: 10px;
+    margin-left: 20px;
+}
+
+.topbar .right a img {
+    width: 24px;
+    height: auto;
+    display: block;
+    filter: hue-rotate(0deg) saturate(0%) brightness(100%);
+}
+
+.notification-icon {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin: 0 15px;
+}
+
+.notification-icon img {
+    width: 24px;
+    height: auto;
+    filter: hue-rotate(0deg) saturate(0%) brightness(100%);
+}
+
+.notification-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 5px;
+    font-size: 12px;
+    font-family: 'Satoshi Bold', sans-serif;
+}
+
+.notification-dropdown {
+    position: absolute;
+    right: 20px;
+    top: 60px;
+    width: 300px;
+    background-color: #161f2f;
+    border: 1px solid #39424e;
+    border-radius: 5px;
+    display: none;
+    flex-direction: column;
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #1d2432;
+    font-family: 'Satoshi Bold', sans-serif;
+    border-bottom: 1px solid #39424e;
+}
+
+.archive-all {
+    cursor: pointer;
+    color: #4CAF50;
+}
+
+.notification-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.notification-item {
+    padding: 10px;
+    border-bottom: 1px solid #39424e;
+    font-family: 'Satoshi Light', sans-serif;
+}
+
+.notification-item:hover {
+    background-color: #39424e;
+}
+
+.show-all {
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    color: #4CAF50;
+}
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 90vh;
+            background: linear-gradient(to right, #0e141e, #161f2f);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Satoshi Bold', sans-serif;
+            font-size: 48px;
+            margin: 0;
+        }
+
+        .hero p {
+            font-family: 'Satoshi Regular', sans-serif;
+            font-size: 20px;
+            margin: 10px 0 20px;
+        }
+
+        .hero a {
+            background-color: #3e5a70;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-family: 'Satoshi Bold', sans-serif;
+        }
+
+    
+        .section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-family: 'Satoshi Bold', sans-serif;
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .section p {
+            font-family: 'Satoshi Regular', sans-serif;
+            font-size: 18px;
+            color: #bbb;
+            margin-bottom: 30px;
+        }
+
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #1d2432;
+            color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            text-align: left;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card h3 {
+            font-family: 'Satoshi Bold', sans-serif;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-family: 'Satoshi Regular', sans-serif;
+            font-size: 16px;
+            margin: 0;
+        }
+
+        .card a {
+            display: block;
+            margin-top: 20px;
+            color: #4CAF50;
+            text-decoration: none;
+            font-family: 'Satoshi Bold', sans-serif;
+        }
+
+        .footer {
+            background-color: #161f2f;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-family: "Satoshi Regular", sans-serif;
+        }
+
+        .footer img.logo {
+            width: 30px;
+            height: auto;
+            margin-right: 5px;
+        }
+
+        .footer p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .footer a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-family: 'Satoshi Bold', sans-serif;
+        }
+
+        .notification-icon {
+            position: relative;
+            cursor: pointer;
+            width: 24px;
+    height: auto;
+    filter: hue-rotate(0deg) saturate(0%) brightness(100%);
+        }
+
+        .notification-icon img {
+            width: 24px;
+            height: auto;
+        }
+
+        .notification-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 5px;
+            font-size: 12px;
+            font-family: 'Satoshi Bold', sans-serif;
+        }
+
+        .notification-dropdown {
+            position: absolute;
+            right: 20px;
+            top: 60px;
+            width: 300px;
+            background-color: #161f2f;
+            border: 1px solid #39424e;
+            border-radius: 5px;
+            display: none;
+            flex-direction: column;
+            max-height: 400px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .notification-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #1d2432;
+            font-family: 'Satoshi Bold', sans-serif;
+            border-bottom: 1px solid #39424e;
+        }
+
+        .archive-all {
+            cursor: pointer;
+            color: #4CAF50;
+        }
+
+        .notification-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .notification-item {
+            padding: 10px;
+            border-bottom: 1px solid #39424e;
+            font-family: 'Satoshi Light', sans-serif;
+        }
+
+        .notification-item:hover {
+            background-color: #39424e;
+        }
+
+        .show-all {
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+            color: #4CAF50;
+        }
+
+        .current-page {
+    
+    border-bottom: 3.5px solid #4CAF50; /* Green bar at the bottom */
+}
+
+/* Widget Bar Styles */
+.widget-bar {
+    position: fixed;
+    top: 60px; /* Adjust based on the height of your topbar */
+    right: -500px; /* Initially hide the widget bar */
+    width: 300px;
+    background-color: #161f2f;
+    border: 1px solid #39424e;
+    border-radius: 5px;
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.widget-bar-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.widget-bar a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-family: 'Satoshi Bold', sans-serif;
+}
+
+.toggle-switch {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Satoshi Bold', sans-serif;
+}
+
+.toggle-switch input {
+    display: none;
+}
+
+.toggle-switch .switch {
+    width: 50px;
+    height: 25px;
+    background-color: #bbb;
+    border-radius: 25px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.toggle-switch .switch::before {
+    content: '';
+    position: absolute;
+    top: 2.5px;
+    left: 2.5px;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: transform 0.2s;
+}
+
+.toggle-switch input:checked + .switch {
+    background-color: #4CAF50;
+}
+
+.toggle-switch input:checked + .switch::before {
+    transform: translateX(25px);
+}
+.toggle-switch span {
+    color: #ececec;
+}
+
+/* Dark Mode and Day Mode Styles 
+body.dark-mode {
+    background-color: #0e141e;
+    color: #ffffff;
+}
+
+body.day-mode {
+    background-color: #f0f0f0;
+    color: #000000;
+}
+
+body.day-mode .topbar {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+body.day-mode .topbar .left a,
+body.day-mode .topbar .right a img {
+    color: #000000;
+    filter: hue-rotate(0deg) saturate(0%) brightness(0%);
+}
+
+body.day-mode .widget-bar {
+    background-color: #ffffff;
+    color: #000000;
+}   
+*/
+    </style>
+</head>
+<body>
+
+    
+    <div class="topbar">
+        <div class="left">
+            <img src="cclogo.png" alt="Logo" class="logo">
+            <a href="home.html"class="current-page">Home</a>
+            <a href="challenges.html">Challenges</a> 
+            <a href="leaderboard.html">Leaderboard</a>
+            <a href="quizindex.html">Quiz</a> 
+        </div>
+        <div class="right">
+            <input type="text" class="searchbar" placeholder="Search...">
+            <a href="#"><img src="icons/notification.png" alt="Notifications"></a>
+            <a href="user.html"><img src="icons/user.png" alt="Profile"></a>
+            <a href="#"><img src="icons/settings.png" alt="Settings"></a>
+        </div>
+    </div>
+
+    <div class="widget-bar" id="widgetBar">
+        <div class="widget-bar-content">
+            <div class="toggle-switch">
+                <input type="checkbox" id="darkModeToggle">
+                <label for="darkModeToggle" class="switch"></label>
+                <span>Dark Mode</span>
+            </div>
+            <a href="#">Settings</a>
+            <a href="logout.html">Logout</a>
+        </div>
+    </div>
+
+    <div class="hero">
+        <h1>Welcome to Creator's Coding Community</h1>
+        <p>Your one-stop destination for coding challenges, quizzes, and leaderboards.</p>
+        <a href="latestindex.html">Get Started</a>
+    </div>
+
+    <div class="section">
+        <h2>Explore Our Features</h2>
+        <p>Join our community and take your coding skills to the next level.</p>
+        <div class="cards">
+            <div class="card">
+                <h3>Latest Challenges</h3>
+                <p>Stay updated with our latest coding challenges and test your skills.</p>
+                <a href="latestindex.html">View Challenges</a>
+            </div>
+            <div class="card">
+                <h3>Top Performers</h3>
+                <p>Check out the leaderboard to see who's on top.</p>
+                <a href="leaderboard.html">View Leaderboard</a>
+            </div>
+            <div class="card">
+                <h3>Upcoming Quizzes</h3>
+                <p>Participate in our upcoming quizzes to win exciting prizes.</p>
+                <a href="quizindex.html">View Quizzes</a>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+       
+        <p>&copy; 2024 Creator's Coding Community. All rights reserved.</p>
+        <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+    </footer>
+
+
+    
+</body>
+</html>

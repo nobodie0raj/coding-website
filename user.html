@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <style>
+       @font-face {
+            font-family: 'Satoshi Regular';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Regular'), url('Satoshi-Regular.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Satoshi Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Italic'), url('Satoshi-Italic.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Satoshi Light';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Light'), url('Satoshi-Light.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Satoshi Light Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Light Italic'), url('Satoshi-LightItalic.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Satoshi Medium';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Medium'), url('Satoshi-Medium.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Satoshi Medium Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Medium Italic'), url('Satoshi-MediumItalic.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Satoshi Bold';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Bold'), url('Satoshi-Bold.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Satoshi Bold Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Bold Italic'), url('Satoshi-BoldItalic.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Satoshi Black';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Black'), url('Satoshi-Black.woff') format('woff');
+        }
+        
+        @font-face {
+            font-family: 'Satoshi Black Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Black Italic'), url('Satoshi-BlackItalic.woff') format('woff');
+        }
+
+        body {
+            background-color: #0b1018;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            font-family: "Satoshi Regular", sans-serif;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding-top: 20px;
+            
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            background-color: #121418;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      
+            margin-bottom: 20px;
+            border: 1px solid #444; /* Adding a minimal greyish outline */
+        }
+
+        .profile-header img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .profile-info {
+            flex-grow: 1;
+        }
+
+        .profile-info h2 {
+            font-family: 'Satoshi Bold', sans-serif;
+            font-size: 1.7em;
+            margin: 0;
+        }
+
+        .profile-info p {
+            font-family: 'Satoshi Light', sans-serif;
+            font-size: 1em;
+            color: rgba(204, 204, 204, 0.6);
+        }
+
+        .profile-info .flag {
+            margin-left: 10px;
+        }
+
+        .card {
+    background-color: #121418;
+    border-radius: 10px;
+    padding: 20px;
+  
+    margin-bottom: 20px;
+    border: 1px solid #444; /* Adding a minimal greyish outline */
+}
+
+        .card h3 {
+            font-family: 'Satoshi Bold', sans-serif;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .card svg {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            margin-right: 7px;
+        }
+
+        .card p, .card a {
+            font-family: 'Satoshi Light', sans-serif;
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            margin: 13px 0;
+            margin-left: auto;
+        }
+
+        .card a {
+            color: #1db954;
+            margin-top: 10px;   
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .back-button-container {
+    margin: 20px 0;
+    text-align: left; /* Adjust the alignment as needed */
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    background-color: #121418;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-family: 'Satoshi Light', sans-serif;
+    font-size: 0.9em;
+    border: 1px solid #444;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.back-button svg {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+.back-button:hover {
+    background-color: #1db954;
+    color: #fff;
+}
+
+
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #0e141e;
+    font-family: 'Satoshi Regular', sans-serif;
+}
+
+.topbar .left {
+    display: flex;
+    align-items: center;
+}
+
+.topbar img.logo {
+    width: 60px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.topbar .left a {
+    color: #ececec;
+    text-decoration: none;
+    margin-right: 40px;
+    font-family: 'Satoshi Bold', sans-serif;
+    position: relative;
+}
+
+.topbar .right {
+    display: flex;
+    align-items: center;
+}
+
+.topbar .right .searchbar {
+    padding: 8px;
+    background-color: #39424e;
+    border: 0.1px solid #ececec;
+    border-radius: 5px;
+    color: #fff;
+    width: 200px;
+    margin-right: 20px;
+    font-family: 'Satoshi Light', sans-serif;
+    margin-left: 15px;
+}
+
+.topbar .right .searchbar::placeholder {
+    color: #fff;
+    font-family: 'Satoshi Light', sans-serif;
+}
+
+.topbar .right a {
+    margin-right: 10px;
+    margin-left: 20px;
+}
+
+.topbar .right a img {
+    width: 24px;
+    height: auto;
+    display: block;
+    filter: hue-rotate(0deg) saturate(0%) brightness(100%);
+}
+
+.notification-icon {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin: 0 15px;
+}
+
+.notification-icon img {
+    width: 24px;
+    height: auto;
+    filter: hue-rotate(0deg) saturate(0%) brightness(100%);
+}
+
+.notification-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 5px;
+    font-size: 12px;
+    font-family: 'Satoshi Bold', sans-serif;
+}
+
+.notification-dropdown {
+    position: absolute;
+    right: 20px;
+    top: 60px;
+    width: 300px;
+    background-color: #161f2f;
+    border: 1px solid #39424e;
+    border-radius: 5px;
+    display: none;
+    flex-direction: column;
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #1d2432;
+    font-family: 'Satoshi Bold', sans-serif;
+    border-bottom: 1px solid #39424e;
+}
+
+.archive-all {
+    cursor: pointer;
+    color: #4CAF50;
+}
+
+.notification-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.notification-item {
+    padding: 10px;
+    border-bottom: 1px solid #39424e;
+    font-family: 'Satoshi Light', sans-serif;
+}
+
+.notification-item:hover {
+    background-color: #39424e;
+}
+
+.show-all {
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    color: #4CAF50;
+}
+
+.current-page {
+    
+    border-bottom: 3.5px solid #4CAF50; /* Green bar at the bottom */
+}
+
+    </style>
+</head>
+<body>
+    <div class="topbar"> 
+        <div class="left">
+            <img src="cclogo.png" alt="Logo" class="logo">
+            <a href="home.html">Home</a>
+            <a href="challenges.html">Challenges</a> 
+            <a href="leaderboard.html">Leaderboard</a>
+            <a href="quizindex.html">Quiz</a> 
+        </div>
+        <div class="right">
+            <input type="text" class="searchbar" placeholder="Search...">
+            <a href="#"><img src="icons/notification.png" alt="Notifications"></a>
+            <a href="user.html"><img src="icons/user.png" alt="Profile"></a>
+            <a href="#"><img src="icons/settings.png" alt="Settings"></a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="profile-header">
+            <img src="icons/user.png" alt="Profile Picture">
+            <div class="profile-info">
+                <h2>Rajnand Bhardwaj <span class="flag">🇮🇳</span></h2>
+                <p>@rajnand_bhardwaj</p>
+            </div>
+        </div>
+
+        <div class="grid-container">
+            <div class="card">
+                <h3>Personal Information</h3>
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="hr-icon"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="m17.903 8.851-4.444 3.613c-.84.666-2.02.666-2.86 0L6.12 8.851" stroke="currentColor" fill="none"></path><path d="M16.909 21C19.95 21.008 22 18.51 22 15.438V8.57C22 5.499 19.95 3 16.909 3H7.09C4.05 3 2 5.499 2 8.57v6.868C2 18.51 4.05 21.008 7.091 21h9.818Z" stroke="currentColor" fill="none"></path></g></svg>
+                    rajnand.bhardwaj@gmail.com
+                </p>
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="hr-icon"><path fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.532 12.472c3.989 3.988 4.894-.625 7.434 1.913 2.448 2.448 3.856 2.938.753 6.04-.388.312-2.857 4.07-11.534-4.605C-.493 7.144 3.262 4.672 3.574 4.284c3.11-3.11 3.592-1.695 6.04.753 2.54 2.54-2.071 3.447 1.918 7.435Z"></path></svg>
+                    Add your mobile number
+                </p>
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="hr-icon"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M14.5 10.5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z" stroke="currentColor" fill="none"></path><path d="M12 21c-1.199 0-7.5-5.102-7.5-10.437C4.5 6.387 7.857 3 12 3c4.142 0 7.5 3.387 7.5 7.563C19.5 15.898 13.198 21 12 21Z" stroke="currentColor" fill="none"></path></g></svg>
+                    India
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>My Resume</h3>
+                <p>Add your resume here</p>
+                <a href="#">
+            
+                    + Add Resume
+                </a>
+            </div>
+
+          <!-- <div class="card">
+                <h3>EEO settings</h3>
+                <p>
+                   
+                    Edit your Equal Employment Opportunity settings
+                </p>
+            </div> -->
+
+
+
+            <div class="card">
+                <h3>                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="section-card-icon"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M15.716 16.223h-7.22M15.716 12.037h-7.22M11.251 7.86H8.496M15.909 2.75l-7.69.004c-2.76.017-4.468 1.833-4.468 4.603v9.196c0 2.784 1.722 4.607 4.506 4.607l7.689-.003c2.76-.017 4.47-1.834 4.47-4.604V7.357c0-2.784-1.723-4.607-4.507-4.607Z" stroke="currentColor" fill="none"></path></g></svg>
+                    My Certifications</h3>
+                <p>
+                    You have not earned any certificates yet.
+                    <a href="#">Get Certified</a>
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 25 24" class="section-card-icon hr-m-r-1"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.314 5.69a2.971 2.971 0 0 1 2.97 2.97v3.358a18.046 18.046 0 0 1-9.006 2.248 18.005 18.005 0 0 1-8.995-2.248V8.659a2.97 2.97 0 0 1 2.97-2.97h12.06Z" clip-rule="evenodd" fill="none"></path><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12.283 16.735v-2.47M15.69 5.686v-.472a2.153 2.153 0 0 0-2.151-2.152h-2.513a2.153 2.153 0 0 0-2.151 2.152v.472M3.307 15.574l.184 2.442a3.157 3.157 0 0 0 3.146 2.921H17.93a3.157 3.157 0 0 0 3.146-2.92l.183-2.443" fill="none"></path></svg>
+                    Work Experience</h3>
+                <p>
+                    Add your work experience. Don't forget to add those internships as well.
+                </p>
+                <a href="#">
+                    <svg><!-- SVG code for add icon here --></svg>
+                    + Add Work Experience
+                </a>
+            </div>
+
+            <div class="card">
+                <h3>                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 25 24" class="section-card-icon hr-m-r-1"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m11.223 14.369-6.842-3.345c-1.464-.715-1.464-2.8-.001-3.515l6.536-3.194a3.09 3.09 0 0 1 2.716 0l6.544 3.197c1.463.715 1.463 2.801 0 3.516l-6.54 3.197c-.861.42-1.866.42-2.726 0l-4.155-2.031M21.283 9.258l-.033 5.414" fill="none"></path><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.756 12.195v4.971a2.13 2.13 0 0 0 1.299 1.972c2.775 1.145 5.538 1.16 8.29.006a2.13 2.13 0 0 0 1.289-1.966v-4.892" fill="none"></path></svg>
+                     Education</h3>
+                <p>
+                    GH Raisoni College Of Engineering
+                </p>
+                <p>Computer Science & Engineering</p>
+               <!--- <p>November 2022 - Present</p>  -->
+                <a href="#">
+                    <svg><!-- SVG code for add icon here --></svg>
+                    + Add Education
+                </a>
+            </div>
+
+            <div class="card">
+                <h3>                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 24 24" class="section-card-icon hr-m-r-1"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.974 13.905a4.906 4.906 0 0 0 7.398.53l2.25-2.25a4.906 4.906 0 0 0-6.938-6.937" fill="none"></path><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.026 10.097a4.906 4.906 0 0 0-7.398-.53l-2.25 2.25a4.906 4.906 0 0 0 6.937 6.937" fill="none"></path></svg>
+                     Links</h3>
+                <p>
+                    <h3>                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 24 24" class="section-card-icon hr-m-r-1"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.974 13.905a4.906 4.906 0 0 0 7.398.53l2.25-2.25a4.906 4.906 0 0 0-6.938-6.937" fill="none"></path><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.026 10.097a4.906 4.906 0 0 0-7.398-.53l-2.25 2.25a4.906 4.906 0 0 0 6.937 6.937" fill="none"></path></svg>
+                        LinkedIn
+                </p>
+                <a href="#">
+                    <svg><!-- SVG code for add icon here --></svg>
+                    + Add Links
+                </a>
+            </div>
+
+            <div class="card">
+                <h3>My Skills</h3>
+                <p>
+                    <svg><!-- SVG code for skills icon here --></svg>
+                    Add all the relevant skills that speak on your behalf
+                </p>
+                <a href="#">
+                    <svg><!-- SVG code for add icon here --></svg>
+                    + Add Skills
+                </a>
+            </div>
+            <div class="back-button-container">
+                <a href="javascript:history.back()" class="back-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.5 19l-7-7 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg>
+                    Back
+                </a>
+        </div>
+    </div>
+</body>
+</html>

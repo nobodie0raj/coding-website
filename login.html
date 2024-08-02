@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="cclogo.png">
+    <title>Creator's Community</title>
+    <style>
+        @font-face {
+            font-family: 'Satoshi Regular';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Regular'), url('Satoshi-Regular.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Satoshi Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Italic'), url('Satoshi-Italic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Satoshi Light';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Light'), url('Satoshi-Light.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Satoshi Light Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Light Italic'), url('Satoshi-LightItalic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Satoshi Medium';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Medium'), url('Satoshi-Medium.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Satoshi Medium Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Medium Italic'), url('Satoshi-MediumItalic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Satoshi Bold';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Bold'), url('Satoshi-Bold.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Satoshi Bold Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Bold Italic'), url('Satoshi-BoldItalic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Satoshi Black';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Black'), url('Satoshi-Black.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Satoshi Black Italic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Black Italic'), url('Satoshi-BlackItalic.woff') format('woff');
+        }
+
+        body {
+            background-color: #0e141e;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            font-family: "Satoshi Regular", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            width: 90%;
+            height: 90%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .left,
+        .right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
+        .left {
+            background-color: #0e141e;
+        }
+
+        .right {
+            background-color: #161f2f;
+            align-items: center;
+        }
+
+        .logo {
+            width: 100px;
+            height: auto;
+            margin-top: 10px;
+            align-self: flex-start;
+            margin-bottom: 150px;
+        }
+
+        .welcome-text {
+            margin-top: 20px;
+            font-family: 'Satoshi Bold', sans-serif;
+            font-size: 1.5em;
+            color: rgba(204, 204, 204, 0.6);
+            align-self: flex-start;
+        }
+
+        .main-text {
+            font-family: 'Satoshi Bold', sans-serif;
+            font-size: 3em;
+            margin-top: 10px;
+            align-self: flex-start;
+        }
+
+        .description {
+            font-family: 'Satoshi Light', sans-serif;
+            font-size: 0.9em;
+            margin-top: 20px;
+            align-self: flex-start;
+        }
+
+        .description a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .description a:hover {
+            text-decoration: underline;
+        }
+
+        .form-container {
+            max-width: 400px;
+            width: 100%;
+            position: absolute;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .form-container.hidden {
+            opacity: 0;
+            transform: translateY(-20px);
+            pointer-events: none;
+        }
+
+        .form-container h2 {
+            font-family: 'Satoshi Bold', sans-serif;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #39424e;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-family: 'Satoshi Light', sans-serif;
+        }
+
+        .form-container input::placeholder {
+            color: #fff;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            margin: 20px 0;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-family: 'Satoshi Bold', sans-serif;
+            cursor: pointer;
+        }
+
+        .separator {
+            width: 100%;
+            text-align: center;
+            border-bottom: 1px solid #ccc;
+            line-height: 0.1em;
+            margin: 20px 0;
+        }
+
+        .separator span {
+            background-color: #161f2f;
+            padding: 0 10px;
+            color: #ccc;
+        }
+
+        .form-container .google-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            color: #000;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-container .google-button img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .form-container .terms a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .form-container .terms a:hover {
+            text-decoration: underline;
+        }
+
+        .login-link {
+            margin-top: 20px;
+            font-family: 'Satoshi Regular', sans-serif;
+            font-size: 1em;
+            color: #ccc;
+            text-align: center;
+        }
+
+        .login-link a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .terms {
+            display: flex;
+            align-items: center;
+        }
+
+        .terms span {
+            white-space: nowrap;
+        }
+
+        .terms input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+        }
+
+        .rememberme {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .rememberme input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+        }
+
+        .rememberme .forgot-password {
+            margin: 0;
+        }
+
+        .rememberme .forgot-password a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .rememberme .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .hidden { display: none; }
+        .form-feedback { color: red; }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left">
+            <img src="logo.png" alt="Logo" class="logo">
+            <div class="welcome-text">Welcome to</div>
+            <div class="main-text">Creator's community</div>
+            <div class="description">Home to a Diverse Coding Community<br>
+                <a href="#">Know more</a>
+            </div>
+        </div>
+        <div class="right">
+            <div class="form-container" id="formContainerCreate">
+                <h2>Create an Account</h2>
+                <div id="createFormFeedback" class="form-feedback"></div>
+                <input type="text" id="fullName" placeholder="Full Name">
+                <input type="email" id="email" placeholder="Email">
+                <input type="password" id="password" placeholder="Password">
+                <div class="terms" id="termsContainer">
+                    <input type="checkbox" id="termsCheckbox">
+                    <span>I agree to the <a href="#">terms and conditions</a></span>
+                </div>
+                <button type="button" onclick="createAccount()">Create Account</button>
+                <div class="separator"><span>or</span></div>
+                <div class="google-button">
+                    <img src="icons/google.webp" alt="Google">
+                    Sign up with Google
+                </div>
+                <div class="login-link">Already have an account? <a href="#" onclick="toggleForms()">Login here</a></div>
+            </div>
+
+            <div class="form-container hidden" id="formContainerLogin">
+                <h2>Login</h2>
+                <div id="loginFormFeedback" class="form-feedback"></div>
+                <input type="email" id="loginEmail" placeholder="Email">
+                <input type="password" id="loginPassword" placeholder="Password">
+                <div class="rememberme">
+                    <label>
+                        <input type="checkbox" id="rememberMeCheckbox"> Remember me
+                    </label>
+                    <div class="forgot-password"><a href="#">Forgot Password?</a></div>
+                </div>
+                <button type="button" onclick="login()">Login</button>
+                <div class="separator"><span>or</span></div>
+                <div class="google-button">
+                    <img src="icons/google.webp" alt="Google">
+                    Login with Google
+                </div>
+                <div class="login-link">Don't have an account? <a href="#" onclick="toggleForms()">Create one here</a></div>
+            </div>
+        </div>
+    </div>
+<script>
+         function toggleForms() {
+            const createForm = document.getElementById('formContainerCreate');
+            const loginForm = document.getElementById('formContainerLogin');
+            createForm.classList.toggle('hidden');
+            loginForm.classList.toggle('hidden');
+        }
+
+        async function createAccount() {
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const termsCheckbox = document.getElementById('termsCheckbox');
+            const feedback = document.getElementById('createFormFeedback');
+
+            feedback.textContent = ''; // Clear previous feedback
+
+            if (!fullName || !validateEmail(email) || password.length < 6 || !termsCheckbox.checked) {
+                feedback.textContent = 'Please fill all fields correctly.';
+                feedback.style.color = 'red';
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:5000/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ fullName, email, password })
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    feedback.textContent = 'Account created successfully!';
+                    feedback.style.color = 'green';
+                } else {
+                    feedback.textContent = data.message;
+                }
+            } catch (err) {
+                feedback.textContent = 'Server error';
+                feedback.style.color = 'red';
+            }
+        }
+
+        async function login() {
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value.trim();
+            const feedback = document.getElementById('loginFormFeedback');
+
+            feedback.textContent = ''; // Clear previous feedback
+
+            if (!validateEmail(email) || password.length < 6) {
+                feedback.textContent = 'Please fill all fields correctly.';
+                feedback.style.color = 'red';
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:5000/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    feedback.textContent = 'Login successful!';
+                    feedback.style.color = 'green';
+                    // Save token to localStorage or handle it as needed
+                } else {
+                    feedback.textContent = data.message;
+                }
+            } catch (err) {
+                feedback.textContent = 'Server error';
+                feedback.style.color = 'red';
+            }
+        }
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        
+    </script>
+</body>
+
+</html>

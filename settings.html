@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings Page</title>
+    <style>
+        @font-face {
+            font-family: 'Satoshi Regular';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Regular'), url('Satoshi-Regular.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Satoshi Bold';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Satoshi Bold'), url('Satoshi-Bold.woff') format('woff');
+        }
+
+        body {
+            background-color: #0e141e;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            font-family: "Satoshi Regular", sans-serif;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding-top: 20px;
+        }
+
+        .settings-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #121418;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .settings-header h2 {
+            font-family: 'Satoshi Bold', sans-serif;
+            font-size: 2em;
+            margin: 0;
+        }
+
+        .card {
+            background-color: #121418;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-family: 'Satoshi Bold', sans-serif;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .card p, .card label {
+            font-family: 'Satoshi Regular', sans-serif;
+            font-size: 1em;
+            color: rgba(255, 255, 255, 0.6);
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .card input, .card select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            background-color: #1e2125;
+            border: 1px solid #333;
+            border-radius: 5px;
+            color: #fff;
+            font-family: 'Satoshi Regular', sans-serif;
+        }
+
+        .card button {
+            padding: 10px 20px;
+            background-color: #1db954;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-family: 'Satoshi Bold', sans-serif;
+            cursor: pointer;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="settings-header">
+            <h2>Settings</h2>
+        </div>
+
+        <div class="grid-container">
+            <div class="card">
+                <h3>Profile Settings</h3>
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" value="rajnand_bhardwaj">
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" value="rajnand@example.com">
+
+                <button>Save Changes</button>
+            </div>
+
+            <div class="card">
+                <h3>Password Settings</h3>
+                <label for="current-password">Current Password</label>
+                <input type="password" id="current-password" name="current-password">
+
+                <label for="new-password">New Password</label>
+                <input type="password" id="new-password" name="new-password">
+
+                <label for="confirm-password">Confirm New Password</label>
+                <input type="password" id="confirm-password" name="confirm-password">
+
+                <button>Change Password</button>
+            </div>
+
+            <div class="card">
+                <h3>Notification Settings</h3>
+                <label for="email-notifications">Email Notifications</label>
+                <select id="email-notifications" name="email-notifications">
+                    <option value="enabled">Enabled</option>
+                    <option value="disabled">Disabled</option>
+                </select>
+
+                <label for="sms-notifications">SMS Notifications</label>
+                <select id="sms-notifications" name="sms-notifications">
+                    <option value="enabled">Enabled</option>
+                    <option value="disabled">Disabled</option>
+                </select>
+
+                <button>Save Changes</button>
+            </div>
+
+            <div class="card">
+                <h3>Privacy Settings</h3>
+                <label for="profile-visibility">Profile Visibility</label>
+                <select id="profile-visibility" name="profile-visibility">
+                    <option value="public">Public</option>
+                    <option value="private">Private</option>
+                    <option value="friends-only">Friends Only</option>
+                </select>
+
+                <button>Save Changes</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
